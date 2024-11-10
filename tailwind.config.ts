@@ -12,7 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        zenkaku: ["var(--font-ZenKakuGothicAntique)", "sans-serif"],
+        viga: ["var(--font-Viga)", "sans-serif"],
+      },
     },
   },
+  darkMode: ["selector", ".dark"],
   plugins: [],
 } satisfies Config;

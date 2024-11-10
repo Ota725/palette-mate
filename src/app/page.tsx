@@ -2,8 +2,8 @@
 import ColorBlock from "@/components/ColorBlock";
 import ControlPanel from "@/components/ControlPanel";
 import Header from "@/components/Header";
-import PaletteHistory from "@/components/PaletteHistory";
-import { HarmonyType } from "@/interfaces/Interfaces";
+// import PaletteHistory from "@/components/PaletteHistory";
+import { Color, HarmonyType } from "@/interfaces/Interfaces";
 import { useEffect, useState } from "react";
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
   ]);
   const [colorCount, setColorCount] = useState<number>(5);
   const [harmonyType, setHarmonyType] = useState<HarmonyType>("complementary");
-  const [history, setHistory] = useState<string[][]>([]);
+  // const [history, setHistory] = useState<string[][]>([]);
 
   useEffect(() => {
     generateNewPalette();
@@ -53,7 +53,7 @@ const Home = () => {
         setHarmonyType={setHarmonyType}
         generateNewPalette={generateNewPalette}
       />
-      <PaletteHistory history={history} />
+      {/* <PaletteHistory history={history} /> */}
     </div>
   );
 };

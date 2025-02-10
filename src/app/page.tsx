@@ -1,22 +1,22 @@
 // app/page.tsx (サーバーコンポーネントとして記述)
 // import ColorPaletteGenerator from "@/components/ColorPaletteGenerator";
 import Header from "@/components/Header";
-import { fetchColorPalettes } from "./api/color-palette/route";
+// import { fetchColorPalettes } from "./api/color-palette/route";
 import { ColorPaletteRequest } from "@/interfaces/Interfaces";
 
 const Home = async () => {
   // サーバーコンポーネントで直接生成したカラーパレットをフロントに渡す
   // const colors = generateNewPalette(); // サーバーサイドで生成されたカラーパレット
-  const json_data: ColorPaletteRequest = {
-    mode: "random",
-    num_colors: 3,
-    temperature: "1.2",
-    num_results: 5,
-    adjacency: ["0", "10", "20", "10", "0", "30", "20", "30", "0"],
-    palette: ["#ffffff", "-", "-"],
-  };
+  // const json_data: ColorPaletteRequest = {
+  //   mode: "random",
+  //   num_colors: 3,
+  //   temperature: "1.2",
+  //   num_results: 5,
+  //   adjacency: ["0", "10", "20", "10", "0", "30", "20", "30", "0"],
+  //   palette: ["#ffffff", "-", "-"],
+  // };
 
-  const data = await fetchColorPalettes(json_data);
+  // const data = await fetchColorPalettes(json_data);
 
   return (
     <div className="font-zenkaku text-lg">

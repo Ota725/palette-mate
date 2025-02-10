@@ -2,7 +2,7 @@
 // import ColorPaletteGenerator from "@/components/ColorPaletteGenerator";
 import Header from "@/components/Header";
 // import { fetchColorPalettes } from "./api/color-palette/route";
-import { ColorPaletteRequest } from "@/interfaces/Interfaces";
+// import { ColorPaletteRequest } from "@/interfaces/Interfaces";
 
 const Home = async () => {
   // サーバーコンポーネントで直接生成したカラーパレットをフロントに渡す

@@ -1,14 +1,13 @@
-// src/app/api/color-palette/route.ts
 import { ColorPaletteRequest } from "@/interfaces/Interfaces";
 import { NextResponse } from "next/server";
 
 // **型定義**
 interface ColorPaletteResponse {
-  results: string[][];
+  results: string[][]; // 色の配列
 }
 
 // **APIリクエスト処理関数**
-export const fetchColorPalettes = async (
+const fetchColorPalettes = async (
   json_data: ColorPaletteRequest
 ): Promise<string[][] | null> => {
   try {

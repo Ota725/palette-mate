@@ -1,0 +1,64 @@
+{
+  "brand": {
+    "2": {
+      "adjacency": ["0", "80", "80", "0"],
+      "description": "Brand mode with 2 colors"
+    },
+    "3": {
+      "adjacency": ["0", "75", "55", "75", "0", "0", "55", "0", "0"],
+      "description": "Brand mode with 3 colors"
+    },
+    "4": {
+      "adjacency": [
+        "0",
+        "70",
+        "60",
+        "50",
+        "70",
+        "0",
+        "40",
+        "30",
+        "60",
+        "40",
+        "0",
+        "20",
+        "50",
+        "30",
+        "20",
+        "0"
+      ],
+      "description": "Brand mode with 4 colors"
+    }
+  },
+  "website": {
+    "2": {
+      "adjacency": ["0", "85", "85", "0"],
+      "description": "Website mode with 2 colors"
+    },
+    "3": {
+      "adjacency": ["0", "80", "50", "80", "0", "0", "50", "0", "0"],
+      "description": "Website mode with 3 colors"
+    },
+    "4": {
+      "adjacency": [
+        "0",
+        "75",
+        "65",
+        "55",
+        "75",
+        "0",
+        "45",
+        "35",
+        "65",
+        "45",
+        "0",
+        "25",
+        "55",
+        "35",
+        "25",
+        "0"
+      ],
+      "description": "Website mode with 4 colors"
+    }
+  }
+}

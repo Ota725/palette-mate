@@ -10,3 +10,12 @@ export type HarmonyType =
   | "triadic"
   | "tetradic"
   | "monochromatic";
+
+export interface ColorPaletteRequest {
+  mode: "transformer" | "diffusion" | "random";
+  num_colors: number;
+  temperature: string;
+  num_results: number;
+  adjacency: string[];
+  palette: string[];
+}

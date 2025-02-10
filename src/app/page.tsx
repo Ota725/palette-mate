@@ -1,59 +1,47 @@
-"use client";
-import ColorBlock from "@/components/ColorBlock";
-import ControlPanel from "@/components/ControlPanel";
+// app/page.tsx (サーバーコンポーネントとして記述)
+// import ColorPaletteGenerator from "@/components/ColorPaletteGenerator";
 import Header from "@/components/Header";
-// import PaletteHistory from "@/components/PaletteHistory";
-import { Color, HarmonyType } from "@/interfaces/Interfaces";
-import { useEffect, useState } from "react";
+import { fetchColorPalettes } from "./api/color-palette/route";
+import { ColorPaletteRequest } from "@/interfaces/Interfaces";
 
-const Home = () => {
-  const [colors, setColors] = useState<Color[]>([
-    { hex: "#E0316E", locked: false },
-    { hex: "#31BDE0", locked: false },
-    { hex: "#E0D131", locked: false },
-    { hex: "#458E4E", locked: false },
-    { hex: "#614934", locked: false },
-  ]);
-  const [colorCount, setColorCount] = useState<number>(5);
-  const [harmonyType, setHarmonyType] = useState<HarmonyType>("complementary");
-  // const [history, setHistory] = useState<string[][]>([]);
-
-  useEffect(() => {
-    generateNewPalette();
-  }, []);
-
-  const generateNewPalette = () => {
-    // ハーモニータイプに基づく新しいカラー生成のロジックをここに追加
+const Home = async () => {
+  // サーバーコンポーネントで直接生成したカラーパレットをフロントに渡す
+  // const colors = generateNewPalette(); // サーバーサイドで生成されたカラーパレット
+  const json_data: ColorPaletteRequest = {
+    mode: "random",
+    num_colors: 3,
+    temperature: "1.2",
+    num_results: 5,
+    adjacency: ["0", "10", "20", "10", "0", "30", "20", "30", "0"],
+    palette: ["#ffffff", "-", "-"],
   };
 
-  const copyToClipboard = (hex: string) => {
-    navigator.clipboard.writeText(hex);
-  };
-
-  const toggleLock = (index: number) => {
-    setColors((prev) =>
-      prev.map((color, i) =>
-        i === index ? { ...color, locked: !color.locked } : color
-      )
-    );
-  };
+  const data = await fetchColorPalettes(json_data);
 
   return (
     <div className="font-zenkaku text-lg">
       <Header />
-      <ColorBlock
-        colors={colors}
-        copyToClipboard={copyToClipboard}
-        toggleLock={toggleLock}
-      />
-      <ControlPanel
-        colorCount={colorCount}
-        setColorCount={setColorCount}
-        harmonyType={harmonyType}
-        setHarmonyType={setHarmonyType}
-        generateNewPalette={generateNewPalette}
-      />
-      {/* <PaletteHistory history={history} /> */}
+      {/* <div style={{ display: "flex", marginBottom: "20px" }}>
+        {data?.map((palette: string[], index: number) => (
+          <div key={index}>
+            <h3>Palette {index + 1}</h3>
+            <div style={{ display: "flex" }}>
+              {palette.map((color: string, colorIndex: number) => (
+                <div
+                  key={colorIndex}
+                  style={{
+                    backgroundColor: color,
+                    width: "100px",
+                    height: "100px",
+                    margin: "5px",
+                    border: "1px solid black",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div> */}
     </div>
   );
 };

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_Antique, Viga } from "next/font/google";
 import "./globals.css";
+import { ColorPaletteProvider } from "@/context/ColorPaletteContext";
+import { HeroUIProvider } from "@heroui/react";
+import { ColorModeProvider } from "@/context/ColorModeProvider";
+import { LockedColorsProvider } from "@/context/LockedColorsContext";
 
 const ZenKakuGothicAntiqueFont = Zen_Kaku_Gothic_Antique({
   weight: "400",
@@ -31,7 +35,13 @@ const RootLayout = ({
       <body
         className={`${ZenKakuGothicAntiqueFont.variable} ${VigaFont.variable} antialiased`}
       >
-        {children}
+        <HeroUIProvider>
+          <ColorPaletteProvider>
+            <ColorModeProvider>
+              <LockedColorsProvider>{children}</LockedColorsProvider>
+            </ColorModeProvider>
+          </ColorPaletteProvider>
+        </HeroUIProvider>
       </body>
     </html>
   );

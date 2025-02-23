@@ -23,8 +23,16 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // 現在のURLを取得
+  const headers = new Headers(request.headers);
+  headers.set("x-current-path", request.nextUrl.pathname);
+
   // 通常のレスポンスを返す
-  return NextResponse.next();
+  return NextResponse.next({
+    request: {
+      headers: headers,
+    },
+  });
 }
 
 export const config = {

@@ -3,7 +3,6 @@ import {
   createContext,
   useState,
   useContext,
-  ReactNode,
   Dispatch,
   SetStateAction,
 } from "react";
@@ -23,10 +22,18 @@ const ColorPaletteContext = createContext<ColorPaletteContextType | undefined>(
 );
 
 // Context プロバイダ
-export const ColorPaletteProvider = ({ children }: { children: ReactNode }) => {
-  const [palettes, setPalettes] = useState<string[][]>([]);
+export const ColorPaletteProvider = ({
+  children,
+  initialPalettes,
+}: {
+  children: React.ReactNode;
+  initialPalettes: string[][];
+}) => {
+  const [palettes, setPalettes] = useState<string[][]>(initialPalettes);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentPalette, setCurrentPalette] = useState<string[]>([]);
+  const [currentPalette, setCurrentPalette] = useState<string[]>(
+    initialPalettes[0]
+  );
 
   return (
     <ColorPaletteContext.Provider

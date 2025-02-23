@@ -1,6 +1,5 @@
 "use client"; // ReactのuseStateを使うのでclient componentにする
 
-import Path from "@/components/Path";
 import { useColorPalette } from "@/context/ColorPaletteContext";
 import { getPathsData } from "@/data/pathsData";
 import React, { useEffect, useState } from "react";
@@ -15,13 +14,17 @@ const CustomSVG = () => {
 
   useEffect(() => {
     if (currentPalette.length > 0) {
-      const paletteCountIndex = Math.max(currentPalette.length - 1, 0);
-      console.log("paletteCount:", paletteCountIndex);
+      const paletteCountIndex = Math.max(currentPalette.length - 2, 0);
+      // console.log("paletteCount:", paletteCountIndex);
       const newPaths = getPathsData(paletteCountIndex) ?? []; // nullやundefinedを防ぐ
       setPaths(newPaths);
-      console.log("paths:", paths);
+      // console.log("newPaths before set:", newPaths);
     }
   }, [currentPalette]);
+
+  // useEffect(() => {
+  //   console.log("Updated paths:", paths);
+  // }, [paths]); // paths が変更されたタイミングでログを出す
 
   return (
     <svg

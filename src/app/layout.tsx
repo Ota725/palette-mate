@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_Antique, Viga } from "next/font/google";
 import "./globals.css";
-import { ColorPaletteProvider } from "@/context/ColorPaletteContext";
 import { HeroUIProvider } from "@heroui/react";
 import { ColorModeProvider } from "@/context/ColorModeProvider";
 import { LockedColorsProvider } from "@/context/LockedColorsContext";
+import DataFetchProvider from "@/providers/DataFetchProvider";
 
 const ZenKakuGothicAntiqueFont = Zen_Kaku_Gothic_Antique({
   weight: "400",
@@ -26,21 +26,23 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({
+  params,
   children,
 }: Readonly<{
+  params: Promise<{ count: string }>;
   children: React.ReactNode;
 }>) => {
   return (
     <html lang="ja">
       <body
-        className={`${ZenKakuGothicAntiqueFont.variable} ${VigaFont.variable} antialiased`}
+        className={`${ZenKakuGothicAntiqueFont.variable} ${VigaFont.variable} bg-white text-black antialiased`}
       >
         <HeroUIProvider>
-          <ColorPaletteProvider>
+          <DataFetchProvider params={params}>
             <ColorModeProvider>
               <LockedColorsProvider>{children}</LockedColorsProvider>
             </ColorModeProvider>
-          </ColorPaletteProvider>
+          </DataFetchProvider>
         </HeroUIProvider>
       </body>
     </html>

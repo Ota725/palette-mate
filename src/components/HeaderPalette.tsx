@@ -5,40 +5,27 @@ import { useColorPalette } from "@/context/ColorPaletteContext";
 import { useLockedColors } from "@/context/LockedColorsContext";
 import ColorPicker from "./ColorPicker";
 
-const HeaderPalette = ({
-  initialPalettes,
-}: {
-  initialPalettes: string[][];
-}) => {
-  const { palettes, setPalettes, currentPalette, setCurrentPalette } =
-    useColorPalette();
+const HeaderPalette = () => {
+  const { currentPalette, setCurrentPalette } = useColorPalette();
   const { isLockedList, setIsLockedList } = useLockedColors();
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (palettes.length === 0) {
-      setPalettes(initialPalettes);
-      setCurrentPalette(initialPalettes[0] || []);
-    }
-  }, [initialPalettes, palettes, setPalettes, setCurrentPalette]);
-
-  // isLockedList の初期化
+  // // isLockedList の初期化
   useEffect(() => {
     if (currentPalette.length > 0 && isLockedList.length === 0) {
       setIsLockedList(new Array(currentPalette.length).fill(false));
     }
   }, [currentPalette, isLockedList, setIsLockedList]);
 
+  // useEffect(() => {
+  //   console.log("isLockedList:", isLockedList);
+  // }, [isLockedList]);
+
   const toggleLock = (index: number) => {
     setIsLockedList(
       isLockedList.map((isLocked, i) => (i === index ? !isLocked : isLocked))
     );
   };
-
-  useEffect(() => {
-    console.log("isLockedList:", isLockedList);
-  }, [isLockedList]);
-
   const handleColorChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { IoChevronUpOutline, IoChevronUpSharp } from "react-icons/io5";

@@ -4,6 +4,8 @@ import "./globals.css";
 import { HeroUIProvider } from "@heroui/react";
 import { ColorModeProvider } from "@/context/ColorModeProvider";
 import DataFetchProvider from "@/providers/DataFetchProvider";
+import { SidebarProvider } from "@/context/SidebarContext";
+import { MediaQueryProvider } from "@/context/MediaQueryContext";
 
 const ZenKakuGothicAntiqueFont = Zen_Kaku_Gothic_Antique({
   weight: "400",
@@ -38,7 +40,11 @@ const RootLayout = ({
       >
         <HeroUIProvider>
           <DataFetchProvider params={params}>
-            <ColorModeProvider>{children}</ColorModeProvider>
+            <ColorModeProvider>
+              <MediaQueryProvider>
+                <SidebarProvider>{children}</SidebarProvider>
+              </MediaQueryProvider>
+            </ColorModeProvider>
           </DataFetchProvider>
         </HeroUIProvider>
       </body>

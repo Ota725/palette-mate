@@ -1,19 +1,22 @@
+"use client";
+import { useMediaQueryContext } from "@/context/MediaQueryContext";
 import Link from "next/link";
+import { IoLogInOutline } from "react-icons/io5";
 
 const AuthButtons = () => {
+  const { isSmUp } = useMediaQueryContext();
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <Link
         href="/login"
-        className="ml-3 mr-2 px-4 py-2 border box-border border-gray-600 rounded-md"
+        className={`ml-3 ${
+          isSmUp
+            ? "p-1 text-xs"
+            : "ml-6 px-4 py-2 border box-border border-gray-600 rounded-md"
+        }`}
       >
+        {isSmUp && <IoLogInOutline size={20} className="ml-0.5" />}
         Login
-      </Link>
-      <Link
-        href="/signup"
-        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
-      >
-        Signup
       </Link>
     </div>
   );

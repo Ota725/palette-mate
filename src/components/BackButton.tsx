@@ -18,7 +18,7 @@ const BackButton = () => {
   return (
     <button
       onClick={handleBack}
-      className="mx-2 px-3 py-2.5 flex items-center bg-[#f9fafb] text-sm text-zinc-500 rounded-md border border-zinc-400 transition  "
+      className="mr-2 px-3 py-2.5 flex items-center bg-[#f9fafb] text-sm text-zinc-500 rounded-md border border-zinc-400 transition  "
     >
       <FaArrowLeft />
     </button>

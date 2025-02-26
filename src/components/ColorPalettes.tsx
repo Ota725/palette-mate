@@ -3,12 +3,13 @@
 import { useColorPalette } from "@/context/ColorPaletteContext";
 
 const ColorPalettes = () => {
-  const { currentIndex, currentPalette } = useColorPalette();
+  const { currentPalette } = useColorPalette();
+
   return (
     <div
       className="h-auto py-3"
       style={{
-        backgroundColor: `${currentPalette[currentIndex]}`,
+        backgroundColor: `${currentPalette[0]}`,
       }}
     >
       <div className={`h-auto py-3 gap-4 flex justify-center items-center`}>
@@ -18,7 +19,7 @@ const ColorPalettes = () => {
           return (
             <div
               key={index}
-              className={`w-56 h-56 shadow-lg pl-3 pt-48 font-semibold`}
+              className={`w-56 h-56 pl-3 shadow-lg pt-48 font-semibold`}
               style={{
                 backgroundColor: color,
                 color: nextColor,

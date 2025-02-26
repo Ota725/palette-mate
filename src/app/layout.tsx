@@ -3,7 +3,6 @@ import { Zen_Kaku_Gothic_Antique, Viga } from "next/font/google";
 import "./globals.css";
 import { HeroUIProvider } from "@heroui/react";
 import { ColorModeProvider } from "@/context/ColorModeProvider";
-import { LockedColorsProvider } from "@/context/LockedColorsContext";
 import DataFetchProvider from "@/providers/DataFetchProvider";
 
 const ZenKakuGothicAntiqueFont = Zen_Kaku_Gothic_Antique({
@@ -39,9 +38,7 @@ const RootLayout = ({
       >
         <HeroUIProvider>
           <DataFetchProvider params={params}>
-            <ColorModeProvider>
-              <LockedColorsProvider>{children}</LockedColorsProvider>
-            </ColorModeProvider>
+            <ColorModeProvider>{children}</ColorModeProvider>
           </DataFetchProvider>
         </HeroUIProvider>
       </body>

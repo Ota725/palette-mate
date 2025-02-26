@@ -13,7 +13,7 @@ const DataFetchProvider = async ({
   params: Promise<{ count: string }>;
   children: React.ReactNode;
 }) => {
-  const count = (await params).count ?? "2";
+  const { count } = (await params) ?? "2";
   // console.log("count:", count);
 
   const modeData: PaletteConfig =

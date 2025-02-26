@@ -1,12 +1,17 @@
 "use client";
 
-import { startTransition, useActionState, useEffect, useRef } from "react";
+import {
+  startTransition,
+  useActionState,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import { generateColorPalettes } from "@/app/actions/generateColorPalettes";
 import { ColorPaletteRequest } from "@/interfaces/Interfaces";
 import { FaArrowRight } from "react-icons/fa6";
 import { useColorPalette } from "@/context/ColorPaletteContext";
 import { useColorMode } from "@/context/ColorModeProvider";
-import { useLockedColors } from "@/context/LockedColorsContext";
 import { defaultPalettes, PaletteConfig } from "@/data/paletteConfigs";
 import { CircularProgress } from "@heroui/progress";
 
@@ -18,30 +23,47 @@ const GenerateButton = ({ count }: { count: string }) => {
     setCurrentIndex,
     currentPalette,
     setCurrentPalette,
+    isLockedList,
   } = useColorPalette();
   const { selectedMode } = useColorMode();
-  const { isLockedList } = useLockedColors();
   const [newPalettes, action, isPending] = useActionState(
     generateColorPalettes,
     []
   );
 
   const modeData: PaletteConfig = defaultPalettes[count];
-  const prevLockedStateRef = useRef<boolean[]>([]);
-
-  // 新しいパレットの適用
-  useEffect(() => {
-    if (newPalettes.length > 0) {
+  const prevLockedStateRef = useRef<boolean[]>(isLockedList);
+  // console.log("prevLocked:", prevLockedStateRef);
+  const updatePalettes = useCallback(
+    (newPalettes: string[][]) => {
       setPalettes(newPalettes);
       setCurrentIndex(0);
       setCurrentPalette(newPalettes[0] || []);
+    },
+    [setPalettes, setCurrentIndex, setCurrentPalette]
+  );
+
+  const updateCurrentPalette = useCallback(() => {
+    if (palettes.length > 0) {
+      setCurrentPalette(palettes[currentIndex]);
     }
-  }, [newPalettes, setPalettes, setCurrentIndex, setCurrentPalette]);
+  }, [palettes, currentIndex, setCurrentPalette]);
+
+  useEffect(() => {
+    if (newPalettes.length > 0) {
+      updatePalettes(newPalettes);
+    }
+  }, [newPalettes, updatePalettes]);
+
+  useEffect(() => {
+    updateCurrentPalette();
+  }, [updateCurrentPalette]);
 
   const handleGenerate = async () => {
     const hasLockedChanged = isLockedList.some(
       (locked, index) => locked !== prevLockedStateRef.current[index]
     );
+    console.log("hasLockedChanged:", hasLockedChanged);
 
     if (hasLockedChanged || currentIndex >= palettes.length - 1) {
       const formattedPalette = currentPalette.map((color, index) =>
@@ -63,8 +85,7 @@ const GenerateButton = ({ count }: { count: string }) => {
 
       prevLockedStateRef.current = [...isLockedList]; // 新しいロック状態を保存
     } else {
-      setCurrentIndex((prev) => prev + 1);
-      setCurrentPalette(palettes[currentIndex + 1]);
+      setCurrentIndex((prev) => Math.min(prev + 1, palettes.length - 1));
     }
   };
 
@@ -72,7 +93,7 @@ const GenerateButton = ({ count }: { count: string }) => {
     <button
       onClick={handleGenerate}
       disabled={isPending}
-      className="transition bg-zinc-700 hover:bg-zinc-800 text-sm text-white font-semibold px-3 py-2.5 gap-x-1 flex items-center rounded-md"
+      className="transition bg-zinc-700 hover:bg-zinc-800 text-sm text-white font-semibold px-3 py-2 gap-x-1 flex items-center rounded-md"
     >
       Generate
       {isPending ? (

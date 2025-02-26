@@ -1,13 +1,13 @@
+// HeaderPalette.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import { useColorPalette } from "@/context/ColorPaletteContext";
-import { useLockedColors } from "@/context/LockedColorsContext";
 import ColorPicker from "./ColorPicker";
 
 const HeaderPalette = () => {
-  const { currentPalette, setCurrentPalette } = useColorPalette();
-  const { isLockedList, setIsLockedList } = useLockedColors();
+  const { currentPalette, setCurrentPalette, isLockedList, setIsLockedList } =
+    useColorPalette();
   const [copiedColor, setCopiedColor] = useState<string | null>(null);
 
   // // isLockedList の初期化
@@ -37,7 +37,7 @@ const HeaderPalette = () => {
   };
 
   return (
-    <div className="flex justify-center gap-4 mr-4 my-4">
+    <div className="flex justify-center gap-x-4">
       {currentPalette.map((color, index) => (
         <ColorPicker
           key={index}

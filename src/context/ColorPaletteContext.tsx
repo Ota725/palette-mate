@@ -15,6 +15,8 @@ interface ColorPaletteContextType {
   setCurrentPalette: Dispatch<SetStateAction<string[]>>;
   currentIndex: number;
   setCurrentIndex: Dispatch<SetStateAction<number>>;
+  isLockedList: boolean[];
+  setIsLockedList: Dispatch<SetStateAction<boolean[]>>;
 }
 
 const ColorPaletteContext = createContext<ColorPaletteContextType | undefined>(
@@ -29,10 +31,18 @@ export const ColorPaletteProvider = ({
   children: React.ReactNode;
   initialPalettes: string[][];
 }) => {
-  const [palettes, setPalettes] = useState<string[][]>(initialPalettes);
+  const defaultPalettes = [
+    ["#ffffff", "#ffffff", "#ffffff"], // 3色すべて白
+  ];
+  const [palettes, setPalettes] = useState<string[][]>(
+    initialPalettes || defaultPalettes
+  );
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentPalette, setCurrentPalette] = useState<string[]>(
-    initialPalettes[0]
+    initialPalettes[0] || defaultPalettes[0]
+  );
+  const [isLockedList, setIsLockedList] = useState<boolean[]>(
+    Array(initialPalettes[0].length).fill(false) // 🔹 初期値を `initialPalettes[0].length` に合わせる
   );
 
   return (
@@ -44,6 +54,8 @@ export const ColorPaletteProvider = ({
         setCurrentIndex,
         currentPalette,
         setCurrentPalette,
+        isLockedList,
+        setIsLockedList,
       }}
     >
       {children}

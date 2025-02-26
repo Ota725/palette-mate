@@ -5,7 +5,7 @@ const AuthButtons = () => {
     <div>
       <Link
         href="/login"
-        className="mr-4 px-4 py-2 border border-gray-600 rounded-md"
+        className="ml-3 mr-2 px-4 py-2 border box-border border-gray-600 rounded-md"
       >
         Login
       </Link>

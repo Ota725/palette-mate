@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_Antique, Viga } from "next/font/google";
 import "./globals.css";
 import { HeroUIProvider } from "@heroui/react";
-import { ColorModeProvider } from "@/context/ColorModeProvider";
-import DataFetchProvider from "@/providers/DataFetchProvider";
-import { SidebarProvider } from "@/context/SidebarContext";
-import { MediaQueryProvider } from "@/context/MediaQueryContext";
+// import { ColorModeProvider } from "@/context/ColorModeProvider";
+// import DataFetchProvider from "@/providers/DataFetchProvider";
+// import { SidebarProvider } from "@/context/SidebarContext";
+// import { MediaQueryProvider } from "@/context/MediaQueryContext";
+// import { LightDarkColorProvider } from "@/context/LightDarkColorProvider";
 
 const ZenKakuGothicAntiqueFont = Zen_Kaku_Gothic_Antique({
   weight: "400",
@@ -27,10 +28,10 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({
-  params,
+  // params,
   children,
 }: Readonly<{
-  params: Promise<{ count: string }>;
+  // params: Promise<{ count: string }>;
   children: React.ReactNode;
 }>) => {
   return (
@@ -39,13 +40,16 @@ const RootLayout = ({
         className={`${ZenKakuGothicAntiqueFont.variable} ${VigaFont.variable} bg-white text-black antialiased`}
       >
         <HeroUIProvider>
-          <DataFetchProvider params={params}>
+          {/* <DataFetchProvider params={params}>
             <ColorModeProvider>
-              <MediaQueryProvider>
-                <SidebarProvider>{children}</SidebarProvider>
-              </MediaQueryProvider>
+              <LightDarkColorProvider>
+                <MediaQueryProvider> */}
+          {/* <SidebarProvider></SidebarProvider> */}
+          {children}
+          {/* </MediaQueryProvider>
+              </LightDarkColorProvider>
             </ColorModeProvider>
-          </DataFetchProvider>
+          </DataFetchProvider> */}
         </HeroUIProvider>
       </body>
     </html>

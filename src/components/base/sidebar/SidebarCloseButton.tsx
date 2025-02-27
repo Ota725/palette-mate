@@ -11,7 +11,7 @@ const SidebarCloseButton = () => {
   }, [isBarOpen]);
   return (
     <>
-      <IoMdClose size={20} className="text-gray-500" onClick={closeSidebar} />
+      <IoMdClose size={24} className="text-gray-400" onClick={closeSidebar} />
     </>
   );
 };

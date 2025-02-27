@@ -1,4 +1,5 @@
 import { signup } from "@/app/auth/actions"; // サインアップ処理をインポート
+import Link from "next/link";
 
 export default function SignupPage() {
   return (
@@ -44,9 +45,9 @@ export default function SignupPage() {
       </form>
       <p className="mt-4 text-center text-sm">
         Already have an account?
-        <a href="/login" className="text-blue-600 hover:underline">
+        <Link href="/login" className="text-blue-600 hover:underline">
           Log in
-        </a>
+        </Link>
       </p>
     </div>
   );

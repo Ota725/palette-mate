@@ -1,11 +1,11 @@
-import HeaderPalette from "./HeaderPalette";
-import ModeSelector from "./ModeSelector";
+import { Box, Grid2 as Grid } from "@mui/material";
+import Switcher from "@/components/layouts/Switcher";
+import SidebarOpenButton from "@/components/base/header/SidebarOpenButton";
+import ModeSelector from "@/components/base/header/ModeSelector";
 import AuthButtons from "./AuthButtons";
 import BackButton from "./BackButton";
 import GenerateButton from "./GenerateButton";
-import { Box, Grid2 as Grid } from "@mui/material";
-import Switcher from "./layouts/Switcher";
-import SidebarOpenButton from "./SidebarOpenButton";
+import HeaderPalette from "./HeaderPalette";
 
 const Header = async ({ count }: { count: string }) => {
   return (

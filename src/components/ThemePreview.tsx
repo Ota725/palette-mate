@@ -1,7 +1,7 @@
 "use client";
 import SVGContainer from "@/components/SVGContainer";
 import ColorPalettes from "./ColorPalettes";
-import { useMediaQueryContext } from "@/context/MediaQueryContext";
+import { useMediaQueryContext } from "@/components/layouts/MediaQueryContext";
 
 // src/app/brand/[count]
 const ThemePreview = () => {

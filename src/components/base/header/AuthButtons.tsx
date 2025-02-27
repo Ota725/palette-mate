@@ -1,5 +1,5 @@
 "use client";
-import { useMediaQueryContext } from "@/context/MediaQueryContext";
+import { useMediaQueryContext } from "@/components/layouts/MediaQueryContext";
 import Link from "next/link";
 import { IoLogInOutline } from "react-icons/io5";
 

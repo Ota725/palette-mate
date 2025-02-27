@@ -3,12 +3,7 @@
 import { LuCopy } from "react-icons/lu";
 import { IoMdLock } from "react-icons/io";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
-
-// 関数をコンポーネント外に切り出し
-const getTextColor = (hex: string) =>
-  parseInt(hex.replace("#", "").slice(0, 6), 16) > 0xffffff / 2
-    ? "text-black"
-    : "text-white";
+import { useLightDarkColor } from "@/context/LightDarkColorProvider";
 
 // コピー処理を小さな関数に分ける
 const copyToClipboard = async (
@@ -38,6 +33,12 @@ const ColorPicker = ({
   copiedColor: string | null;
   setCopiedColor: React.Dispatch<React.SetStateAction<string | null>>;
 }) => {
+  const { lightest, darkest } = useLightDarkColor();
+
+  // IoMdLock の色を現在の背景色に応じて変更
+  const lockColor =
+    parseInt(color.replace("#", ""), 16) > 0xffffff / 2 ? darkest : lightest;
+
   return (
     <Popover placement="bottom-end">
       <PopoverTrigger>
@@ -45,9 +46,7 @@ const ColorPicker = ({
           className="w-10 h-10 z-10 flex justify-center items-center rounded-full shadow-gray-300 shadow-md hover:shadow-lg hover:shadow-gray-300 cursor-pointer relative"
           style={{ backgroundColor: color }}
         >
-          {isLocked && (
-            <IoMdLock size={16} className={`${getTextColor(color)}`} />
-          )}
+          {isLocked && <IoMdLock size={16} style={{ color: lockColor }} />}
         </div>
       </PopoverTrigger>
       <PopoverContent className="p-4 bg-white border shadow-lg rounded-lg w-40">

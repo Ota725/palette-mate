@@ -33,7 +33,7 @@ const GenerateButton = ({ count }: { count: string }) => {
 
   const modeData: PaletteConfig = defaultPalettes[count];
   const prevLockedStateRef = useRef<boolean[]>(isLockedList);
-  // console.log("prevLocked:", prevLockedStateRef);
+
   const updatePalettes = useCallback(
     (newPalettes: string[][]) => {
       setPalettes(newPalettes);
@@ -59,6 +59,7 @@ const GenerateButton = ({ count }: { count: string }) => {
     updateCurrentPalette();
   }, [updateCurrentPalette]);
 
+  // Generageボタンを押した時の処理
   const handleGenerate = async () => {
     const hasLockedChanged = isLockedList.some(
       (locked, index) => locked !== prevLockedStateRef.current[index]

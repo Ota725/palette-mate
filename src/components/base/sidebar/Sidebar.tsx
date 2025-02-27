@@ -2,8 +2,8 @@
 import { useSidebar } from "@/context/SidebarContext";
 import MenuSection from "./MenuSection";
 import SidebarCloseButton from "./SidebarCloseButton";
-import Switcher from "./layouts/Switcher";
-import { useMediaQueryContext } from "@/context/MediaQueryContext";
+import Switcher from "../../layouts/Switcher";
+import { useMediaQueryContext } from "@/components/layouts/MediaQueryContext";
 
 const Sidebar = () => {
   const { isBarOpen, closeSidebar } = useSidebar();
@@ -28,7 +28,7 @@ const Sidebar = () => {
         style={{}}
       >
         {/* md以上・istrue =  */}
-        <div className="py-4 px-2 flex justify-between items-center">
+        <div className="py-4 px-3 flex justify-between items-center">
           <h1 className="text-2xl font-viga">PaletteMate</h1>
           <Switcher sp={<SidebarCloseButton />} />
         </div>
@@ -41,7 +41,7 @@ const Sidebar = () => {
             { href: "/brand/3", label: "3 Colors" },
           ]}
         />
-        {/* Website メニュー */}
+        {/* Website メニュー
         <MenuSection
           title="Website"
           links={[
@@ -49,7 +49,7 @@ const Sidebar = () => {
             { href: "/website/2", label: "2 Accents" },
             { href: "/website/3", label: "3 Accents" },
           ]}
-        />
+        /> */}
       </div>
     </>
   );

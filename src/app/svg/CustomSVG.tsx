@@ -15,16 +15,10 @@ const CustomSVG = () => {
   useEffect(() => {
     if (currentPalette.length > 0) {
       const paletteCountIndex = Math.max(currentPalette.length - 2, 0);
-      // console.log("paletteCount:", paletteCountIndex);
-      const newPaths = getPathsData(paletteCountIndex) ?? []; // nullやundefinedを防ぐ
+      const newPaths = getPathsData(paletteCountIndex) ?? [];
       setPaths(newPaths);
-      // console.log("newPaths before set:", newPaths);
     }
   }, [currentPalette]);
-
-  // useEffect(() => {
-  //   console.log("Updated paths:", paths);
-  // }, [paths]); // paths が変更されたタイミングでログを出す
 
   return (
     <svg

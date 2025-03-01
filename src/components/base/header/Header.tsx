@@ -6,6 +6,7 @@ import AuthButtons from "./AuthButtons";
 import BackButton from "./BackButton";
 import GenerateButton from "./GenerateButton";
 import HeaderPalette from "./HeaderPalette";
+import FavoriteButton from "./FavoriteButton";
 
 const Header = async ({ count }: { count: string }) => {
   return (
@@ -18,6 +19,8 @@ const Header = async ({ count }: { count: string }) => {
           <div className="flex justify-end items-center text-end">
             {/* ログイン・サインアップ */}
             <AuthButtons />
+            {/* お気に入り登録 */}
+            <FavoriteButton />
             {/* モード変更 */}
             <ModeSelector />
             {/* 巻き戻しボタン */}

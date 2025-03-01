@@ -33,6 +33,7 @@ const GenerateButton = ({ count }: { count: string }) => {
 
   const modeData: PaletteConfig = defaultPalettes[count];
   const prevLockedStateRef = useRef<boolean[]>(isLockedList);
+  const prevSelectedStateRef = useRef<string>(selectedMode);
 
   const updatePalettes = useCallback(
     (newPalettes: string[][]) => {
@@ -64,9 +65,15 @@ const GenerateButton = ({ count }: { count: string }) => {
     const hasLockedChanged = isLockedList.some(
       (locked, index) => locked !== prevLockedStateRef.current[index]
     );
-    console.log("hasLockedChanged:", hasLockedChanged);
+    const hasModeChanged = prevSelectedStateRef.current !== selectedMode;
 
-    if (hasLockedChanged || currentIndex >= palettes.length - 1) {
+    // console.log("hasLockedChanged:", hasLockedChanged);
+
+    if (
+      hasLockedChanged ||
+      hasModeChanged ||
+      currentIndex >= palettes.length - 1
+    ) {
       const formattedPalette = currentPalette.map((color, index) =>
         isLockedList[index] ? color : "-"
       );
@@ -85,6 +92,7 @@ const GenerateButton = ({ count }: { count: string }) => {
       });
 
       prevLockedStateRef.current = [...isLockedList]; // 新しいロック状態を保存
+      prevSelectedStateRef.current = selectedMode; // 新しいモード状態を保存
     } else {
       setCurrentIndex((prev) => Math.min(prev + 1, palettes.length - 1));
     }

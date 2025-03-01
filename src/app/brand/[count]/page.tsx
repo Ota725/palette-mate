@@ -10,8 +10,10 @@ import { MediaQueryProvider } from "@/components/layouts/MediaQueryContext";
 import { SidebarProvider } from "@/context/SidebarContext";
 import { defaultPalettes, PaletteConfig } from "@/data/paletteConfigs";
 import { ColorPaletteRequest } from "@/interfaces/Interfaces";
+// import { createClient } from "@/utils/supabase/server";
 
 // TODO
+// モード変更した際にapi呼び出し
 // 保存機能
 
 const BrandPage = async ({
@@ -19,7 +21,12 @@ const BrandPage = async ({
 }: {
   params: Promise<{ count: string }>;
 }) => {
+  // const supabase = await createClient();
   const { count } = (await params) ?? "2";
+
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser();
 
   const modeData: PaletteConfig =
     defaultPalettes[count] ?? defaultPalettes["2"];

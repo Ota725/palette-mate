@@ -18,7 +18,7 @@ const ModeSelector = () => {
     <div>
       <Popover placement="bottom-end">
         <PopoverTrigger>
-          <div className="z-10 mx-4 p-1 flex justify-center items-center cursor-pointer">
+          <div className="z-10 mr-4 p-1 flex justify-center items-center cursor-pointer">
             <LuAtom size={20} />
           </div>
         </PopoverTrigger>

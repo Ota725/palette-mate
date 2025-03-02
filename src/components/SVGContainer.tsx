@@ -1,9 +1,9 @@
-import CustomSVG from "@/app/svg/CustomSVG";
+import CustomSVG from "@/components/CustomSVG";
 
-export default function SVGContainer() {
-  return (
-    <div className="top-0">
-      <CustomSVG />
-    </div>
-  );
-}
+const SVGContainer = () => (
+  <div className="top-0">
+    <CustomSVG />
+  </div>
+);
+
+export default SVGContainer;

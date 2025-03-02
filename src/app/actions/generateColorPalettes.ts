@@ -1,18 +1,45 @@
 "use server";
 
-import { ColorPaletteRequest } from "@/interfaces/Interfaces";
-import { fetchColorPalettes } from "@/utils/fetchColorPalettes";
+import {
+  ColorPaletteRequest,
+  ColorPaletteResponse,
+  Palette,
+} from "@/interfaces/Interfaces";
 
-// 型を適切に指定して、Server Actions が非同期で正しいデータを返す
+// APIからカラーパレットを取得
+const fetchColorPalettes = async (
+  jsonData: ColorPaletteRequest
+): Promise<Palette[]> => {
+  try {
+    const response = await fetch("https://api.huemint.com/color", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(jsonData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch color palettes");
+    }
+
+    const data: ColorPaletteResponse = await response.json();
+
+    return data.results.map((result) => result.palette);
+  } catch (error) {
+    console.error("Error fetching color palettes:", error);
+    return [];
+  }
+};
+
+// Server Action
 export const generateColorPalettes = async (
   _prevState: string[][],
   jsonData: ColorPaletteRequest
 ): Promise<string[][]> => {
   try {
     const palettes = await fetchColorPalettes(jsonData);
-    return palettes; // string[][] 型を返す
+    return palettes;
   } catch (error) {
     console.error("Error in generateColorPalettes action:", error);
-    return []; // エラー時に空配列を返す
+    return [];
   }
 };

@@ -1,11 +1,6 @@
 "use client";
+import { ColorModeType } from "@/interfaces/Interfaces";
 import { createContext, useState, useContext, ReactNode } from "react";
-
-// 型定義
-interface ColorModeType {
-  selectedMode: string;
-  setSelectedMode: (mode: string) => void;
-}
 
 const ColorModeContext = createContext<ColorModeType | undefined>(undefined);
 

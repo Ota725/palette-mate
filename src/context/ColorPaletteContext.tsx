@@ -1,23 +1,6 @@
 "use client";
-import {
-  createContext,
-  useState,
-  useContext,
-  Dispatch,
-  SetStateAction,
-} from "react";
-
-// 型定義
-interface ColorPaletteContextType {
-  palettes: string[][];
-  setPalettes: Dispatch<SetStateAction<string[][]>>;
-  currentPalette: string[];
-  setCurrentPalette: Dispatch<SetStateAction<string[]>>;
-  currentIndex: number;
-  setCurrentIndex: Dispatch<SetStateAction<number>>;
-  isLockedList: boolean[];
-  setIsLockedList: Dispatch<SetStateAction<boolean[]>>;
-}
+import { ColorPaletteContextType } from "@/interfaces/Interfaces";
+import { createContext, useState, useContext } from "react";
 
 const ColorPaletteContext = createContext<ColorPaletteContextType | undefined>(
   undefined

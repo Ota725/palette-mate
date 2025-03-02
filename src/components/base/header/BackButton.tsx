@@ -6,6 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 const BackButton = () => {
   const { currentIndex, setCurrentIndex } = useColorPalette();
 
+  // currentIndexを1つ戻す
   const handleBack = () => {
     if (0 < currentIndex) {
       setCurrentIndex((prev) => prev - 1);

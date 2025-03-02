@@ -1,13 +1,10 @@
-"use client"; // ReactのuseStateを使うのでclient componentにする
+"use client";
 
 import { useColorPalette } from "@/context/ColorPaletteContext";
 import { getPathsData } from "@/data/pathsData";
+import { PathData } from "@/interfaces/Interfaces";
 import React, { useEffect, useState } from "react";
 
-interface PathData {
-  d: string;
-  colorIndexes: number;
-}
 const CustomSVG = () => {
   const { currentPalette } = useColorPalette();
   const [paths, setPaths] = useState<PathData[]>([]);

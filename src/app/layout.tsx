@@ -10,6 +10,7 @@ import { LightDarkColorProvider } from "@/context/LightDarkColorProvider";
 import { defaultPalettes } from "@/data/paletteConfigs";
 import { generateColorPalettes } from "./actions/generateColorPalettes";
 import { ColorPaletteRequest, PaletteConfig } from "@/interfaces/Interfaces";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const ZenKakuGothicAntiqueFont = Zen_Kaku_Gothic_Antique({
   weight: "400",
@@ -63,7 +64,10 @@ const RootLayout = async ({
             <ColorModeProvider>
               <LightDarkColorProvider>
                 <MediaQueryProvider>
-                  <SidebarProvider>{children}</SidebarProvider>
+                  <SidebarProvider>
+                    {children}
+                    <SpeedInsights />
+                  </SidebarProvider>
                 </MediaQueryProvider>
               </LightDarkColorProvider>
             </ColorModeProvider>

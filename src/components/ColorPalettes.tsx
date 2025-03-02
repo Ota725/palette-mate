@@ -1,33 +1,17 @@
 "use client";
 
 import { useColorPalette } from "@/context/ColorPaletteContext";
-import { getLightestAndDarkestColors } from "@/utils/getLightestAndDarkestColors";
-import { getTextColor } from "@/utils/getTextColor";
-
-// 背景を10%暗くする
-const darkenHexColor = (hex: string, percentage: number): string => {
-  // HEXコードが正しい形式か確認
-  if (!/^#([0-9A-Fa-f]{6})$/.test(hex)) {
-    throw new Error("Invalid HEX color format. Expected format: #RRGGBB");
-  }
-
-  // RGBに分割
-  const [r, g, b] = hex
-    .slice(1) // "#" を除去
-    .match(/\w\w/g)!
-    .map((x) => Math.max(0, Math.round(parseInt(x, 16) * (1 - percentage))));
-
-  // 2桁のHEX形式に変換
-  const toHex = (value: number) => value.toString(16).padStart(2, "0");
-
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-};
+import {
+  darkenHexColor,
+  getLightestAndDarkestColors,
+  getTextColor,
+} from "@/utils/colorUtils";
 
 const ColorPalettes = () => {
   const { currentPalette } = useColorPalette();
   const paletteBackground = darkenHexColor(currentPalette[0], 0.1);
   const { lightestColor, darkestColor } =
-    getLightestAndDarkestColors(currentPalette);
+    getLightestAndDarkestColors(currentPalette); // 背景の色に応じてcurrentPaletteの中から明るい色と暗い色を取得
 
   return (
     <div

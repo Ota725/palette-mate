@@ -1,11 +1,10 @@
-import { login } from "@/app/auth/actions"; // ログイン処理をインポート
+"use server";
+import { login } from "@/app/auth/actions";
 import Link from "next/link";
 
-export default function LoginPage() {
+const LoginPage = async () => {
   return (
-    // 全体の高さを画面いっぱいに設定し、フレックスボックスで中央寄せするコンテナを追加
     <div className="min-h-screen flex flex-col justify-center items-center px-4 py-12">
-      {/* 少し上に配置するためにmt-autoの代わりに-mt-16を使用 */}
       <div className="w-full max-w-md -mt-16 p-6 bg-white rounded-lg shadow-md">
         <h1 className="text-2xl font-semibold text-center mb-6">Log In</h1>
         <form action={login} className="space-y-4">
@@ -55,4 +54,6 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;

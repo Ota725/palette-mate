@@ -1,14 +1,10 @@
 "use client";
 import { useSidebar } from "@/context/SidebarContext";
-import { useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
 
 const SidebarOpenButton = () => {
-  const { isBarOpen, openSidebar } = useSidebar();
+  const { openSidebar } = useSidebar();
 
-  useEffect(() => {
-    console.log("isOpen:", isBarOpen);
-  }, [isBarOpen]);
   return (
     <>
       <IoMenu

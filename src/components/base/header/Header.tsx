@@ -17,7 +17,7 @@ const Header = async ({ count }: { count: string }) => {
         {/* ボタン */}
         <Grid size={{ xs: 12, sm: "auto" }}>
           <div className="flex justify-end items-center text-end">
-            {/* ログイン・サインアップ */}
+            {/* ログイン */}
             <AuthButtons />
             {/* お気に入り登録 */}
             <FavoriteButton />
@@ -35,7 +35,6 @@ const Header = async ({ count }: { count: string }) => {
           sx={{ paddingTop: { xs: 1, sm: 0 } }}
         >
           <Box display="flex" justifyContent="end" alignItems="center">
-            {/* 配色表示 */}
             <HeaderPalette />
           </Box>
         </Grid>

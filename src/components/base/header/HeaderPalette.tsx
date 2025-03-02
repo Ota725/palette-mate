@@ -17,10 +17,6 @@ const HeaderPalette = () => {
     }
   }, [currentPalette, isLockedList, setIsLockedList]);
 
-  // useEffect(() => {
-  //   console.log("isLockedList:", isLockedList);
-  // }, [isLockedList]);
-
   const toggleLock = (index: number) => {
     setIsLockedList(
       isLockedList.map((isLocked, i) => (i === index ? !isLocked : isLocked))

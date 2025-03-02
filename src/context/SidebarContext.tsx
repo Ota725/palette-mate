@@ -1,20 +1,13 @@
 // SidebarContext.tsx
 "use client";
 
+import { SidebarContextType } from "@/interfaces/Interfaces";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-
-type SidebarContextType = {
-  isBarOpen: boolean;
-  toggleSidebar: () => void;
-  openSidebar: () => void;
-  closeSidebar: () => void;
-};
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {
   const [isBarOpen, setIsOpen] = useState(false);
-
   const toggleSidebar = () => setIsOpen((prev) => !prev);
   const openSidebar = () => setIsOpen(true);
   const closeSidebar = () => setIsOpen(false);

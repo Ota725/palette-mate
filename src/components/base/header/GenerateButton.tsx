@@ -8,11 +8,11 @@ import {
   useRef,
 } from "react";
 import { generateColorPalettes } from "@/app/actions/generateColorPalettes";
-import { ColorPaletteRequest } from "@/interfaces/Interfaces";
+import { ColorPaletteRequest, PaletteConfig } from "@/interfaces/Interfaces";
 import { FaArrowRight } from "react-icons/fa6";
 import { useColorPalette } from "@/context/ColorPaletteContext";
 import { useColorMode } from "@/context/ColorModeProvider";
-import { defaultPalettes, PaletteConfig } from "@/data/paletteConfigs";
+import { defaultPalettes } from "@/data/paletteConfigs";
 import { CircularProgress } from "@heroui/progress";
 
 const GenerateButton = ({ count }: { count: string }) => {

@@ -1,11 +1,7 @@
 // app/config/defaultPalettes.ts
-export interface PaletteConfig {
-  num_colors: number;
-  adjacency: string[];
-  palette: string[];
-}
+import { PaletteConfig } from "@/interfaces/Interfaces";
 
-// 設定オブジェクト（JSON から TypeScript に変更）
+// URLに応じてAPI用のjsonデータを設定
 export const defaultPalettes: Record<string, PaletteConfig> = {
   "1": {
     num_colors: 2,

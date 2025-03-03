@@ -1,6 +1,6 @@
 # アプリケーション名
 
-**Palette Mate**
+Palette Mate
 
 ## アプリケーション概要
 
@@ -16,8 +16,8 @@
 
 ## テスト用アカウント
 
-- **ID**: 12345@example.com
-- **Password**: aiueo123
+- **ID**: `12345@example.com`
+- **Password**: `aiueo123`
 
 ## 利用方法
 
@@ -38,37 +38,33 @@
 - ユーザーが保存した配色の閲覧機能
 - レスポンシブデザイン
 
-## 実装した機能についての GIF と説明
+## 実装した機能について
 
 ### 配色提案機能
 
-ユーザーがボタンを押すと、アプリがランダムに配色を提案します。
-
-![color-suggestion](https://example.com/gif/color-suggestion.gif)  
-_GIF 例: 配色提案ボタンを押して、新しい色が提案される様子。_
+ユーザーがボタンを押すと、**Huemint API** を使用して調和のとれたカラーパレットを提案します。  
+ランダムではなく、機械学習モデルを用いた生成アルゴリズムを活用しています。
 
 ### お気に入り機能
 
 お気に入りボタンを押すことで、現在の配色をお気に入りに登録できます。
 
-![add-favorite](https://example.com/gif/add-favorite.gif)  
-_GIF 例: ユーザーが配色をお気に入りに追加する動作。_
-
 ## 実装予定の機能
 
-- **SNS 連携**：ユーザーが SNS で配色をシェアできる機能を実装予定。
-- **ダークモード**：視認性向上のため、ダークモードを追加予定。
+- グラデーションの配色提案モード
 
-## データベース設計
+## データベース
 
 以下はデータベースの ER 図です。  
-![ER Diagram](https://example.com/er-diagram.png)  
-_ER 図例: ユーザー、配色、お気に入りに関連するテーブル設計。_
+![palettes](image.png)
+本データベースは、お気に入り登録された配色を管理するシンプルな構成です。
 
-## ローカルでの動作方法
+## 技術スタック
 
-1. リポジトリをクローンします。
-   ```bash
-   git clone https://github.com/yourusername/palette-mate.git
-   cd palette-mate
-   ```
+- Next.js 15.0.3 (App Router)
+- React 19
+- TailwindCSS
+- TypeScript
+- Supabase
+- Vercel
+- ESLint, Perttier, Git, GitHub

@@ -7,7 +7,8 @@ import {
 } from "@/interfaces/Interfaces";
 
 // APIからカラーパレットを取得
-const fetchColorPalettes = async (
+export const fetchColorPalettes = async (
+  _prevState: string[][],
   jsonData: ColorPaletteRequest
 ): Promise<Palette[]> => {
   try {
@@ -26,20 +27,6 @@ const fetchColorPalettes = async (
     return data.results.map((result) => result.palette);
   } catch (error) {
     console.error("Error fetching color palettes:", error);
-    return [];
-  }
-};
-
-// Server Action
-export const generateColorPalettes = async (
-  _prevState: string[][],
-  jsonData: ColorPaletteRequest
-): Promise<string[][]> => {
-  try {
-    const palettes = await fetchColorPalettes(jsonData);
-    return palettes;
-  } catch (error) {
-    console.error("Error in generateColorPalettes action:", error);
     return [];
   }
 };

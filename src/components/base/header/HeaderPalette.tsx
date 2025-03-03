@@ -1,14 +1,13 @@
 // HeaderPalette.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useColorPalette } from "@/context/ColorPaletteContext";
 import ColorPicker from "./ColorPicker";
 
 const HeaderPalette = () => {
   const { currentPalette, setCurrentPalette, isLockedList, setIsLockedList } =
     useColorPalette();
-  const [copiedColor, setCopiedColor] = useState<string | null>(null);
 
   // // isLockedList の初期化
   useEffect(() => {
@@ -41,8 +40,6 @@ const HeaderPalette = () => {
           isLocked={isLockedList[index]}
           toggleLock={() => toggleLock(index)}
           handleColorChange={(e) => handleColorChange(e, index)}
-          copiedColor={copiedColor}
-          setCopiedColor={setCopiedColor}
         />
       ))}
     </div>

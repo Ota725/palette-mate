@@ -1,6 +1,7 @@
 // utils/favoriteUtils.ts
 import { toggleFavorite } from "@/app/actions/favoriteColors";
 import { createClient } from "./supabase/client";
+import { redirect } from "next/navigation";
 
 export const checkIfFavorite = async (
   currentPalette: string[],
@@ -32,8 +33,7 @@ export const handleFavorite = async (
   const supabase = createClient();
   const { data: user, error: userError } = await supabase.auth.getUser();
   if (userError || !user?.user) {
-    console.error("User not found or authentication failed:", userError);
-    return;
+    redirect("/login");
   }
 
   const formattedColors = `{${currentPalette

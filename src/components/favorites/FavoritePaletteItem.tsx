@@ -80,17 +80,19 @@ const FavoritePaletteItem = ({
       </div>
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-4 rounded shadow-md">
-            <p>Are you sure you want to delete this palette?</p>
+          <div className="bg-white p-4 rounded font-semibold shadow-md">
+            <h2 className="font-semibold mb-4 text-center">
+              Are you sure you want to delete this palette?
+            </h2>
             <div className="flex justify-end gap-2 mt-2">
               <button
-                className="bg-gray-300 px-4 py-2 rounded"
+                className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 transition"
                 onClick={() => setIsModalOpen(false)}
               >
                 Cancel
               </button>
               <button
-                className="bg-red-500 text-white px-4 py-2 rounded"
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
                 onClick={handleDelete}
               >
                 Delete

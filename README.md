@@ -43,11 +43,22 @@ Palette Mate
 ### 配色提案機能
 
 ユーザーがボタンを押すと、**Huemint API** を使用して調和のとれたカラーパレットを提案します。  
-ランダムではなく、機械学習モデルを用いた生成アルゴリズムを活用しています。
+機械学習モデルを用いた生成アルゴリズムを活用しています。
+![generate_palette](https://github.com/user-attachments/assets/7fdfa134-1ae8-415f-b99f-f6c7065c4d8b)
+
+### 色のカスタマイズ機能
+
+特定の色を自由に設定することができます。
+![change_color](https://github.com/user-attachments/assets/7525ab90-14d7-49cd-afed-2e97f84747ca)
+
+色を固定して新たに配色を生成することができます。
+![lock_palette](https://github.com/user-attachments/assets/fc5b112e-1445-434b-bb3b-c7648bbb6ed2)
 
 ### お気に入り機能
 
 お気に入りボタンを押すことで、現在の配色をお気に入りに登録できます。
+![save_palette](https://github.com/user-attachments/assets/5ecc9cf7-fcd8-4a20-a4c9-c173ee9031d4)
+![favorites_list](https://github.com/user-attachments/assets/ff04384e-930d-4dcf-9247-6ea1c1c98efa)
 
 ## 今後実装予定の機能
 
@@ -58,6 +69,7 @@ Palette Mate
 
 以下はデータベースの ER 図です。  
 ![palettes](image.png)
+
 本データベースは、お気に入り登録された配色を管理するシンプルな構成です。
 
 ## 技術スタック

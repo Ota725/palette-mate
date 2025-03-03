@@ -6,10 +6,14 @@ import Switcher from "../../layouts/Switcher";
 import { useMediaQueryContext } from "@/components/layouts/MediaQueryContext";
 import Link from "next/link";
 import { MdFavoriteBorder } from "react-icons/md";
+import { IoLogOutOutline } from "react-icons/io5";
+import { useState } from "react";
+import LogoutModal from "./LogoutModal";
 
 const Sidebar = () => {
   const { isBarOpen, closeSidebar } = useSidebar();
   const { isMdUp } = useMediaQueryContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
       {/* md未満の場合のみオーバーレイ（クリックで閉じる）を表示 */}
@@ -53,7 +57,17 @@ const Sidebar = () => {
             <MdFavoriteBorder />
           </span>
         </Link>
+        {/* ログアウトボタン（クリックでモーダル表示） */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="w-full text-sm font-semibold flex justify-between items-center cursor-pointer h-14 py-4 px-3 text-gray-500 hover:text-gray-900 transition"
+        >
+          Log Out
+          <IoLogOutOutline />
+        </button>
       </div>
+      {/* ログアウト確認モーダル */}
+      <LogoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };

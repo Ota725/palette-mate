@@ -20,7 +20,7 @@ export const login = async (formData: FormData) => {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/brand/2/");
 };
 
 export const signup = async (formData: FormData) => {
@@ -38,5 +38,19 @@ export const signup = async (formData: FormData) => {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/brand/2/");
+};
+
+export const logout = async () => {
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error("Logout failed:", error);
+    redirect("/error");
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/login");
 };

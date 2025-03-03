@@ -1,5 +1,5 @@
 // app/brand/[count]/page.tsx
-import { fetchColorPalettes } from "@/app/actions/generateColorPalettes";
+import { fetchColorPalettes } from "@/app/actions/fetchColorPalettes";
 import Header from "@/components/base/header/Header";
 import Sidebar from "@/components/base/sidebar/Sidebar";
 import ThemePreview from "@/components/ThemePreview";
@@ -23,7 +23,7 @@ const BrandPage = async ({
     mode: "transformer",
     num_colors: modeData.num_colors,
     temperature: "1.2",
-    num_results: 10,
+    num_results: 50,
     adjacency: modeData.adjacency,
     palette: modeData.palette,
   };

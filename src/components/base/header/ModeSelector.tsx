@@ -37,6 +37,7 @@ const ModeSelector = () => {
                   control={<Radio color="success" />}
                   label={option.label}
                   className="mx-0 my-1 p-1 border shadow-sm text-gray-600 rounded-sm"
+                  sx={{ marginLeft: 0, marginRight: 0 }}
                 />
               ))}
             </RadioGroup>

@@ -13,7 +13,7 @@ import { useColorPalette } from "@/context/ColorPaletteContext";
 import { useColorMode } from "@/context/ColorModeProvider";
 import { defaultPalettes } from "@/data/paletteConfigs";
 import { CircularProgress } from "@heroui/progress";
-import { fetchColorPalettes } from "@/app/actions/generateColorPalettes";
+import { fetchColorPalettes } from "@/app/actions/fetchColorPalettes";
 
 const GenerateButton = ({ count }: { count: string }) => {
   const {
@@ -80,7 +80,7 @@ const GenerateButton = ({ count }: { count: string }) => {
         mode: selectedMode,
         num_colors: modeData.num_colors,
         temperature: "1.2",
-        num_results: 15,
+        num_results: selectedMode === "diffusion" ? 5 : 30,
         adjacency: modeData.adjacency,
         palette: formattedPalette,
       };

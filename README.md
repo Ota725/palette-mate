@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# アプリケーション名
 
-## Getting Started
+Palette Mate
 
-First, run the development server:
+## アプリケーション概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Palette Mate**は、Huemint（[https://huemint.com/](https://huemint.com/)）という配色ツールを参考にした Web アプリケーションです。Huemint は、機械学習を活用してグラフィックデザイン用の色を生成します。単にフラットなカラーパレットを生成するのではなく、最終デザインで色がどのように使われるかを考慮して色を生成します。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Palette Mate**は、Huemint のアプローチを基にしつつ、ユーザーが生成された配色を保存・管理できる「お気に入り登録機能」を追加しました。これにより、ユーザーは自分の好みに合わせた配色を簡単に作成・保存し、後で確認することができます。デザイン初心者でも色選びが簡単にできるよう、直感的で使いやすいインターフェースを提供します。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## URL
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+デプロイ済みのアプリケーションへのリンクを記載します。  
+[https://palette-mate-q0qio83mc-ota725s-projects.vercel.app/brand/2](https://palette-mate-q0qio83mc-ota725s-projects.vercel.app/brand/2)  
+（デプロイ先 URL）
 
-## Learn More
+## テスト用アカウント
 
-To learn more about Next.js, take a look at the following resources:
+- **ID**: `12345@example.com`
+- **Password**: `aiueo123`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 利用方法
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. 上記の URL にアクセスします。
+2. 色の提案や保存機能を使って、配色を自由に作成・保存できます。
+3. 「お気に入り」機能を利用する場合はログインを行います。好みの配色を後で確認することができます。
 
-## Deploy on Vercel
+## 目指した課題解決
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+お気に入り機能を追加することで、ユーザーはいつでもどこでも、どのデバイスからでも配色を保存・管理できるようにし、通勤通学途中などでもスムーズに利用できるようにしました。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 洗い出した要件
+
+- ユーザー登録・ログイン機能
+- 配色提案機能
+- 配色の保存機能（お気に入り）
+- お気に入り配色の管理機能
+- ユーザーが保存した配色の閲覧機能
+- レスポンシブデザイン
+
+## 実装した機能について
+
+### 配色提案機能
+
+ユーザーがボタンを押すと、**Huemint API** を使用して調和のとれたカラーパレットを提案します。  
+ランダムではなく、機械学習モデルを用いた生成アルゴリズムを活用しています。
+
+### お気に入り機能
+
+お気に入りボタンを押すことで、現在の配色をお気に入りに登録できます。
+
+## 実装予定の機能
+
+- グラデーションの配色提案モード
+
+## データベース
+
+以下はデータベースの ER 図です。  
+![palettes](image.png)
+本データベースは、お気に入り登録された配色を管理するシンプルな構成です。
+
+## 技術スタック
+
+- Next.js 15.0.3 (App Router)
+- React 19
+- TailwindCSS
+- TypeScript
+- Supabase
+- Vercel
+- ESLint, Perttier, Git, GitHub

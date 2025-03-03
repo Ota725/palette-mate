@@ -4,36 +4,26 @@ import { LuCopy } from "react-icons/lu";
 import { IoMdLock } from "react-icons/io";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { useLightDarkColor } from "@/context/LightDarkColorProvider";
-
-// コピー処理を小さな関数に分ける
-const copyToClipboard = async (
-  color: string,
-  setCopiedColor: React.Dispatch<React.SetStateAction<string | null>>
-) => {
-  try {
-    await navigator.clipboard.writeText(color);
-    setCopiedColor(color);
-    setTimeout(() => setCopiedColor(null), 1500);
-  } catch (error) {
-    console.error("Clipboard copy failed:", error);
-  }
-};
+import { copyToClipboard } from "@/utils/colorUtils";
+import { useState, useRef } from "react";
 
 const ColorPicker = ({
   color,
   isLocked,
   toggleLock,
   handleColorChange,
-  setCopiedColor,
 }: {
   color: string;
   isLocked: boolean;
   toggleLock: () => void;
   handleColorChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  copiedColor: string | null;
-  setCopiedColor: React.Dispatch<React.SetStateAction<string | null>>;
 }) => {
   const { lightest, darkest } = useLightDarkColor();
+  const [copiedStates, setCopiedStates] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+  const timerRefsMap = useRef<{ [key: string]: NodeJS.Timeout }>({});
+  const uniqueKey = `color-${color}`;
 
   // IoMdLock の色を現在の背景色に応じて変更
   const lockColor =
@@ -60,10 +50,12 @@ const ColorPicker = ({
           </button>
           <button
             className="px-3 py-1 gap-x-3 flex justify-start items-center hover:bg-zinc-100"
-            onClick={() => copyToClipboard(color, setCopiedColor)}
+            onClick={() =>
+              copyToClipboard(color, setCopiedStates, uniqueKey, timerRefsMap)
+            }
           >
             <LuCopy size={14} />
-            Copy Code
+            {copiedStates[uniqueKey] ? "Copied" : "Copy Code"}
           </button>
           <input
             type="color"

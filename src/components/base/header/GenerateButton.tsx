@@ -7,13 +7,13 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { generateColorPalettes } from "@/app/actions/generateColorPalettes";
 import { ColorPaletteRequest, PaletteConfig } from "@/interfaces/Interfaces";
 import { FaArrowRight } from "react-icons/fa6";
 import { useColorPalette } from "@/context/ColorPaletteContext";
 import { useColorMode } from "@/context/ColorModeProvider";
 import { defaultPalettes } from "@/data/paletteConfigs";
 import { CircularProgress } from "@heroui/progress";
+import { fetchColorPalettes } from "@/app/actions/generateColorPalettes";
 
 const GenerateButton = ({ count }: { count: string }) => {
   const {
@@ -27,7 +27,7 @@ const GenerateButton = ({ count }: { count: string }) => {
   } = useColorPalette();
   const { selectedMode } = useColorMode();
   const [newPalettes, action, isPending] = useActionState(
-    generateColorPalettes,
+    fetchColorPalettes,
     []
   );
 
@@ -66,8 +66,6 @@ const GenerateButton = ({ count }: { count: string }) => {
       (locked, index) => locked !== prevLockedStateRef.current[index]
     );
     const hasModeChanged = prevSelectedStateRef.current !== selectedMode;
-
-    // console.log("hasLockedChanged:", hasLockedChanged);
 
     if (
       hasLockedChanged ||

@@ -1,3 +1,42 @@
+// export const copyToClipboard = async (
+//   color: string,
+//   setCopiedColor: React.Dispatch<React.SetStateAction<string | null>>
+// ) => {
+//   try {
+//     await navigator.clipboard.writeText(color);
+//     setCopiedColor(color);
+//     setTimeout(() => setCopiedColor(null), 1500);
+//   } catch (error) {
+//     console.error("Clipboard copy failed:", error);
+//   }
+// };
+
+export const copyToClipboard = async (
+  color: string,
+  setCopiedState: React.Dispatch<
+    React.SetStateAction<{ [key: string]: boolean }>
+  >,
+  uniqueKey: string,
+  timerRefsMap?: React.MutableRefObject<{ [key: string]: NodeJS.Timeout }>
+) => {
+  try {
+    await navigator.clipboard.writeText(color);
+    setCopiedState((prev) => ({ ...prev, [uniqueKey]: true }));
+
+    if (timerRefsMap) {
+      if (timerRefsMap.current[uniqueKey]) {
+        clearTimeout(timerRefsMap.current[uniqueKey]);
+      }
+
+      timerRefsMap.current[uniqueKey] = setTimeout(() => {
+        setCopiedState((prev) => ({ ...prev, [uniqueKey]: false }));
+      }, 1000);
+    }
+  } catch (error) {
+    console.error("Clipboard copy failed:", error);
+  }
+};
+
 export const getLightestAndDarkestColors = (
   palette: string[]
 ): { darkestColor: string; lightestColor: string } => {

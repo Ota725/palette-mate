@@ -12,11 +12,9 @@ export const toggleFavorite = async ({
   colors: string;
   currentState: boolean;
 }): Promise<boolean> => {
-  // console.log("Server action called with currentState:", currentState);
   const supabase = await createClient();
 
   if (currentState) {
-    // console.log("サーバー: お気に入り削除処理");
     // 既にお気に入りの場合 → 削除
     const { error } = await supabase
       .from("palettes")
@@ -30,7 +28,6 @@ export const toggleFavorite = async ({
     }
     return false; // 削除成功 → お気に入り解除
   } else {
-    // console.log("サーバー: お気に入り追加処理");
     // お気に入りでない場合 → 追加
     const { error } = await supabase.from("palettes").insert({
       user_id: userId,
@@ -59,4 +56,18 @@ export const getFavoritePalettes = async (userId: string) => {
   }
 
   return data as supabasePalettesProps[];
+};
+
+export const deleteFavoritePalette = async (paletteId: string) => {
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("palettes")
+    .delete()
+    .eq("id", paletteId);
+
+  if (error) {
+    console.error("Failed to delete palette:", error);
+    return false;
+  }
+  return true;
 };

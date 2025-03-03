@@ -22,8 +22,8 @@ const ModeSelector = () => {
             <LuAtom size={20} />
           </div>
         </PopoverTrigger>
-        <PopoverContent className="w-64 p-4 bg-white border rounded-lg ">
-          <div className="w-full">
+        <PopoverContent className="w-64 flex justify-center items-center p-4 bg-white border rounded-lg ">
+          <div className="w-full mx-auto">
             <FormLabel component="legend">Generation options</FormLabel>
             <RadioGroup
               color="success"

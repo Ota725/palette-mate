@@ -57,3 +57,17 @@ export const getFavoritePalettes = async (userId: string) => {
 
   return data as supabasePalettesProps[];
 };
+
+export const deleteFavoritePalette = async (paletteId: string) => {
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("palettes")
+    .delete()
+    .eq("id", paletteId);
+
+  if (error) {
+    console.error("Failed to delete palette:", error);
+    return false;
+  }
+  return true;
+};

@@ -1,28 +1,20 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { IoChevronUpOutline, IoChevronUpSharp } from "react-icons/io5";
 import { MenuSectionProps } from "@/interfaces/Interfaces";
 
 const MenuSection = ({ title, links }: MenuSectionProps) => {
-  const [isMenuOpen, setisMenuOpen] = useState(false);
+  const [isMenuOpen] = useState(true);
 
   return (
     <div>
       <div
-        className={`flex justify-between items-center cursor-pointer h-14 py-4 px-3 transition-all duration-300 select-none ${
-          isMenuOpen ? "text-gray-900" : "text-gray-500"
-        }`}
-        onClick={() => setisMenuOpen((prev) => !prev)}
+        className={`flex justify-between items-center h-14 py-4 px-3 transition-all duration-300 select-none`}
       >
         <h3 className="text-sm font-semibold">{title}</h3>
         <span
-          className={`w-4 h-4 transform transition-transform duration-500 ${
-            isMenuOpen ? "rotate-180" : "rotate-0"
-          }`}
-        >
-          {isMenuOpen ? <IoChevronUpSharp /> : <IoChevronUpOutline />}
-        </span>
+          className={`w-4 h-4 transform transition-transform duration-500`}
+        ></span>
       </div>
 
       <ul

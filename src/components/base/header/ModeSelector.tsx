@@ -22,14 +22,14 @@ const ModeSelector = () => {
             <LuAtom size={20} />
           </div>
         </PopoverTrigger>
-        <PopoverContent className="w-64 flex justify-center items-center p-4 bg-white border rounded-lg ">
+        <PopoverContent className="w-64 text-center p-4 bg-white border rounded-lg ">
           <div className="w-full">
             <FormLabel component="legend">Generation options</FormLabel>
             <RadioGroup
               color="success"
               value={selectedMode}
               onChange={(e) => setSelectedMode(e.target.value)}
-              className="flex flex-col items-center text-center"
+              className="text-center"
             >
               {radioOptions.map((option) => (
                 <FormControlLabel

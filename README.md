@@ -10,9 +10,9 @@ Palette Mate
 
 ## URL
 
-デプロイ済みのアプリケーションへのリンクを記載します。  
-[https://palette-mate-q0qio83mc-ota725s-projects.vercel.app/brand/2](https://palette-mate-q0qio83mc-ota725s-projects.vercel.app/brand/2)  
-（デプロイ先 URL）
+デプロイ先URL
+
+[https://palette-mate-kappa.vercel.app/brand/2](https://palette-mate-kappa.vercel.app/brand/2)  
 
 ## テスト用アカウント
 **※ 個人情報のため、現在アカウントの新規登録機能は停止しています。**
